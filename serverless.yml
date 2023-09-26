@@ -1,0 +1,88 @@
+service: bank-transfer-aws
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:DescribeTable
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+        - dynamodb:ListTables
+      Resource: 
+        - !GetAtt [DestinatariosDynamoDBTable, Arn]
+        - !GetAtt [TransferenciasDynamoDBTable, Arn]
+        - "arn:aws:dynamodb:us-east-1:*:table/*"  
+
+functions:
+  createDestinatario:
+    handler: controllers/destinatarioController.createDestinatario
+    events:
+      - http:
+          path: destinatario/new
+          method: post
+          cors: true
+  getDestinatario:
+    handler: controllers/destinatarioController.getDestinatario
+    events:
+      - http:
+          path: destinatario/{rut}
+          method: get
+          cors: true
+  createTransferencia:
+    handler: controllers/transferenciaController.createTransferencia
+    events:
+      - http:
+          path: transferencia/new
+          method: post
+          cors: true
+  getAllTransfers:
+    handler: controllers/transferenciaController.getAllTransfers
+    events:
+      - http:
+          path: transfers
+          method: get
+          cors: true
+  testDbConnection:
+    handler: handler.testDbConnection
+    events:
+      - http:
+          path: healthcheck
+          method: get
+
+plugins:
+  - serverless-offline
+
+resources:
+  Resources:
+    DestinatariosDynamoDBTable:
+      Type: "AWS::DynamoDB::Table"
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: "id"
+            AttributeType: "S"
+        KeySchema:
+          - AttributeName: "id"
+            KeyType: "HASH"
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: "Destinatarios"
+    TransferenciasDynamoDBTable:
+      Type: "AWS::DynamoDB::Table"
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: "id"
+            AttributeType: "S"
+        KeySchema:
+          - AttributeName: "id"
+            KeyType: "HASH"
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: "Transferencias"

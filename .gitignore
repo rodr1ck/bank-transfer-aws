@@ -1,0 +1,16 @@
+# Node modules
+node_modules
+
+# Serverless Framework
+.serverless
+
+# Environment variables
+.env
+
+# IDEs
+.idea
+.vscode
+
+# Build directory
+dist
+
