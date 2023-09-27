@@ -66,8 +66,15 @@ sls deploy
 ### Healthcheck
 Para validar la correcta ejecución del sistema, visita [este enlace](http://localhost:3000/dev/healthcheck). Deberías recibir el mensaje: "Server is ok".
 
+### Llamada Healthcheck
+![Llamada Healthcheck](https://github.com/rodr1ck/bank-transfer-aws/assets/29648679/a55291c3-312f-4ed8-9222-86b3d85bb2c1)
+
 ## URL del Backend Desplegado
-[Accede al backend aquí](https://your-AWS-url.com/dev/)
+### Llamada Healthcheck
+![Crea Destinatario](https://github.com/rodr1ck/bank-transfer-aws/assets/29648679/4b3809d8-30cc-4d7a-8543-6bde13dd2877)
+![Get Destinatario](https://github.com/rodr1ck/bank-transfer-aws/assets/29648679/fb2484d7-eea6-4611-9f4d-98387e82d47e)
+![Crea Transferencia](https://github.com/rodr1ck/bank-transfer-aws/assets/29648679/16c602e4-a0a6-4fcd-a028-a2c43115c870)
+![Get All Transferencias](https://github.com/rodr1ck/bank-transfer-aws/assets/29648679/19c546f4-c834-45ea-8485-9638ac072201)
 
 ## Reflexiones
 ### Logros
