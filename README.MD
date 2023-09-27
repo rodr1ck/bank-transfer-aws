@@ -69,11 +69,14 @@ Para validar la correcta ejecución del sistema, visita [este enlace](http://loc
 ### Llamada Healthcheck
 ![Llamada Healthcheck](https://github.com/rodr1ck/bank-transfer-aws/assets/29648679/a55291c3-312f-4ed8-9222-86b3d85bb2c1)
 
-## URL del Backend Desplegado
-### Llamada Healthcheck
+## URLs del Backend Desplegado
+### Llamada Crea Destinatario
 ![Crea Destinatario](https://github.com/rodr1ck/bank-transfer-aws/assets/29648679/4b3809d8-30cc-4d7a-8543-6bde13dd2877)
+### Llamada Get Destinatario
 ![Get Destinatario](https://github.com/rodr1ck/bank-transfer-aws/assets/29648679/fb2484d7-eea6-4611-9f4d-98387e82d47e)
+### Llamada Crea Transferncia
 ![Crea Transferencia](https://github.com/rodr1ck/bank-transfer-aws/assets/29648679/16c602e4-a0a6-4fcd-a028-a2c43115c870)
+### Llamada Get All Transferencias
 ![Get All Transferencias](https://github.com/rodr1ck/bank-transfer-aws/assets/29648679/19c546f4-c834-45ea-8485-9638ac072201)
 
 ## Reflexiones
