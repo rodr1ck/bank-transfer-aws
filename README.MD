@@ -1,29 +1,81 @@
 # Proyecto Final AWS: Sistema de Transferencia Bancaria
 
 ## Descripción
-El proyecto se centra en desplegar una aplicación backend construida en Node.js que permite gestionar transferencias bancarias y destinatarios. Esta aplicación funciona en la nube de AWS.
+Este proyecto consiste en una aplicación backend desarrollada en Node.js, diseñada para gestionar transferencias bancarias y destinatarios. Está alojada en la nube a través de AWS, aunque también ofrece la posibilidad de ejecutarse localmente.
 
-## URL del Backend Desplegado
-[Link del backend](https://you-AWS-url.com/dev/)
+## Funcionalidades
+- **Creación de Destinatarios**: Permite registrar destinatarios con detalles como RUT, nombre, email, teléfono, entre otros.
+- **Consulta de Destinatarios**: Posibilita la búsqueda de un destinatario específico mediante su RUT.
+- **Realización de Transferencias**: Facilita la ejecución de transferencias bancarias, especificando diversos detalles relacionados con la transacción.
+- **Visualización de Transferencias**: Ofrece un listado completo de todas las transferencias efectuadas.
 
-### Healthcheck
-Al visitar [este enlace](https://you-AWS-url/dev/healthcheck), se recibe un mensaje: "Server is ok".
+## Ejecución en Local
 
-## Proceso de Despliegue y Configuración en AWS
+### Pre-requisitos
+- Instalación de DynamoDB localmente.
+- Java debe estar instalado y configurado correctamente en el `PATH` del sistema.
 
-1. **Serverless Framework**: Se utilizó Serverless Framework para automatizar el despliegue de funciones Lambda y configurar API Gateway en AWS.
-2. **DynamoDB**: Se eligió DynamoDB debido a su naturaleza escalable y su integración sin problemas con AWS Lambda.
-3. **IAM**: Se configuraron los roles y políticas necesarios para permitir que las funciones Lambda interactúen con DynamoDB.
-4. **API Gateway**: Se configuró para exponer las funciones Lambda como endpoints HTTP.
+### Pasos
+1. Agregar `endpoint: "http://localhost:8000"` en `AWS.config.update`.
+2. Iniciar DynamoDB localmente:
+```
+$ java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb
+```
+
+### Validación
+Tras iniciar DynamoDB, debería aparecer el siguiente mensaje:
+```
+Initializing DynamoDB Local with the following configuration:
+Port:   8000
+InMemory:       false
+DbPath: null
+SharedDb:       true
+shouldDelayTransientStatuses:   false
+CorsParams:     null
+```
+
+
+## Despliegue en AWS
+1. **Serverless Framework**: Utilizado para facilitar el despliegue de funciones Lambda y la configuración del API Gateway en AWS.
+2. **DynamoDB**: Seleccionado por su escalabilidad e integración con AWS Lambda.
+3. **IAM**: Se establecieron roles y políticas para garantizar una correcta interacción entre las funciones Lambda y DynamoDB.
+4. **API Gateway**: Configurado para exponer las funciones Lambda a través de endpoints HTTP.
 
 ## Arquitectura
-El sistema consta de varias funciones Lambda que gestionan diferentes aspectos de las transferencias bancarias y los destinatarios. Estas funciones interactúan con tablas DynamoDB para almacenar y recuperar datos. Todo es expuesto a través de API Gateway para permitir el acceso mediante peticiones HTTP.
+El sistema integra diversas funciones Lambda encargadas de las transferencias bancarias y gestión de destinatarios. Estas interactúan con DynamoDB para el almacenamiento y consulta de datos, y todo es accesible mediante API Gateway.
 
-## Logros y Desafíos
+## Configuración Inicial y Despliegue
+
+1. **Clonar el repositorio**:
+```
+git clone https://github.com/rodr1ck/bank-transfer-aws.git
+```
+2. **Instalación de dependencias**:
+```
+npm i
+```
+3. **Despliegue local (tras configurar DynamoDB localmente)**:
+```
+sls offline
+```
+4. **Despliegue en AWS (asegúrate de configurar previamente el usuario AWS)**:
+```
+sls deploy
+```
+
+### Healthcheck
+Para validar la correcta ejecución del sistema, visita [este enlace](http://localhost:3000/dev/healthcheck). Deberías recibir el mensaje: "Server is ok".
+
+## URL del Backend Desplegado
+[Accede al backend aquí](https://your-AWS-url.com/dev/)
+
+## Reflexiones
 ### Logros
-1. Despliegue exitoso de una aplicación serverless en AWS.
-2. Configuración correcta de políticas de seguridad para permitir la interacción entre servicios.
+- Despliegue exitoso en un entorno serverless de AWS.
+- Gestión adecuada de las políticas de seguridad entre servicios.
 
 ### Desafíos
-1. Asegurar que las políticas IAM estuvieran correctamente configuradas para permitir las acciones necesarias en DynamoDB.
-2. Aprender a usar el Serverless Framework y sus integraciones con AWS.
+- Configuración de políticas IAM.
+- Adaptación al Serverless Framework y su ecosistema en AWS.
+
+
